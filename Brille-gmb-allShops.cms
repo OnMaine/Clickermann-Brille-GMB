@@ -1,0 +1,460 @@
+﻿//hwnd browser
+$hwnd1 = wndfind("- Google Chrome")
+$hwnd2 = wndfind("Clickermann -")
+
+//SETKBLAYOUT($hwnd1, 1049) // устанавливаем русскую раскладку для окон 
+//SETKBLAYOUT($hwnd2, 1049)
+
+//url магазинов 
+$arrUrl[0] = "https://business.google.com/products/l/12203790175481193875"  //пр-т Героев Сталинграда, 20 А Киев
+$arrUrl[1] = "https://business.google.com/products/l/04231434133647174559"  //вулиця Михайла Грушевського, 21 Полтава
+$arrUrl[2] = "https://business.google.com/products/l/08557409423490763021"  //пр-т Алишера Навои, 69 Киев
+$arrUrl[3] = "https://business.google.com/products/l/04142508873746427796"  //ул. Рабочая, 166Б Днепр
+$arrUrl[4] = "https://business.google.com/products/l/13661625612385728799"  //вулиця Університетська, 2Ф/3 Ірпінь 
+$arrUrl[5] = "https://business.google.com/products/l/16979375907646397194" //б-р Чоколовский, 42А Київ 
+$arrUrl[6] = "https://business.google.com/products/l/04369526949227081622"  //ул. Электрическая, 8 Кривой Рог
+$arrUrl[7] = "https://business.google.com/products/l/03020158068626579235"  //вулиця Автозаводська, 24/ Київ
+$arrUrl[8] = "https://business.google.com/products/l/04984923618743068273"  //ул. Стрийская, 79 Львов
+$arrUrl[9] = "https://business.google.com/products/l/17479305229552556801"  //ул. Городоцкая, 168 В Львов
+$arrUrl[10] = "https://business.google.com/products/l/08880009924438131644" //ул. Златоустовская, 47-49 Київ
+$arrUrl[11] = "https://business.google.com/products/l/06445422995514086339" //ул. Почтовая, 115 Запорожье
+$arrUrl[12] = "https://business.google.com/products/l/00445861130443187670" //ул. Ревуцкого, 9 Киев
+$arrUrl[13] = "https://business.google.com/products/l/11994362269706606389" //пр-т Мира, 9 Киев
+$arrUrl[14] = "https://business.google.com/products/l/03159598778865096017" //ул. Михаила Ломоносова, 50/2 Киев
+$arrUrl[15] = "https://business.google.com/products/l/00904585300710943993" //ул. Щербакова, 16 Киев
+$arrUrl[16] = "https://business.google.com/products/l/08695569429191343001" //ул. Марины Цветаевой,9 Киев
+$arrUrl[17] = "https://business.google.com/products/l/06036171713594188553" //ул. Волгоградская, 12 Киев
+$arrUrl[18] = "https://business.google.com/products/l/14134068016078317298" //проспект Петра Григоренка, 5А Київ
+$arrUrl[19] = "https://business.google.com/products/l/04168378117791571622" //вулиця Молочна, 11, корп. б Харків
+$arrUrl[20] = "https://business.google.com/products/l/15154705045283533325" //Саперное поле, 14/55 Киев
+//$arrUrl[21] = "https://business.google.com/products/l/01976714172412777636"  //проспект Небесної Сотні, 111 Одеса
+
+
+//Селект первого поля с категориями товара
+$arrCategories[0] = "Люстри"
+$arrCategories[1] = "Освітлення"
+$arrCategories[2] = "Точкові світильники"
+$arrCategories[3] = "Трекові світильники"
+$arrCategories[4] = "Аксесуари для освітлення"
+$arrCategories[5] = "Перемикачі електричного освітлення"
+$arrCategories[6] = "Робоче освітлення"
+$arrCategories[7] = "Торшери"
+$arrCategories[8] = "Комплектуючі до LED стрічок"
+$arrCategories[9] = "Аварійне освітлення"
+$arrCategories[10] = "Світлодіодні стрічки"
+$arrCategories[11] = "Плаваюче та підводне освітлення"
+$arrCategories[12] = "Ландшафтне освітлення доріжок"
+$arrCategories[13] = "Трансформатори напруги та регулятори"
+$arrCategories[14] = "Нічні світильники й загальне освітлення"
+$arrCategories[15] = "Наземні ліхтарі"
+$arrCategories[16] = "Прожектори та точкові світильники"
+$arrCategories[17] = "Світлодіодні лампочки"
+$arrCategories[18] = "Лампи розжарювання"
+$arrCategories[19] = "Світильники на стелю"
+$arrCategories[20] = "Настінні світильники"
+$arrCategories[21] = "Люмінесцентні лампи"
+$arrCategories[22] = "Лампочки"
+$arrCategories[23] = "Уличные настенные светильники"
+
+$arrButtons[0] = "Заказать"
+$arrButtons[1] = "Купить"
+$arrButtons[2] = "Подробнее…"
+$arrButtons[3] = "Принять участие"
+
+
+$step1 = "Добавить товар"
+$step2 = "Выбор фотографии"
+$step3 = "Название товара"
+$step4 = "Выберите категорию"
+$step5 = "Цена продукта"
+$step6 = "Описание товара"
+$step7 = "Добавить кнопку"
+$step8 = "Ссылка для кнопки"
+$step9 = "Сохранить"
+
+// Координаты в Exel
+
+//Выбор фотографии
+$cord1 = "100,230"
+// Название товара
+$cord2 = "190,230"
+// категориЯ
+$cord3 = "380,230"
+// Цена продукта
+$cord4 = "520,230"
+// Описание товара
+$cord5 = "620,230"
+// Кнопка (если нужно)
+$cord6 = "725,230"
+// Ссылка для кнопки
+$cord7 = "820,230"
+
+
+$greenColor = colorgen(120, 204, 102)      //green
+$yellowColor = colorgen(255, 255, 0)      //yellow 
+$orangeColor = colorgen(255, 150, 50)      //orange (chrome)            
+
+$uploadedCounter = 0
+
+//   *** Подпрограммы ***
+
+//Копировать 
+sub(copy)
+WAITMS (150)
+KEYDOWN (#CTRL)
+WAITMS (200)
+KEYDOWN (#A)
+WAITMS (200)
+KEYUP (#A)
+KEYUP (#CTRL)
+
+WAITMS (150)
+KEYDOWN (#CTRL)
+WAITMS (200)
+KEYDOWN (#C)
+WAITMS (200)
+KEYUP (#C)
+KEYUP (#CTRL) 
+LCLICK(1715,780)
+WAITMS (350) 
+end_sub 
+
+//Вставить
+sub(paste)
+WAITMS (150)
+KEYDOWN (#CTRL)
+WAITMS (200)
+KEYDOWN (#V)
+WAITMS (200)
+KEYUP (#V)
+KEYUP (#CTRL) 
+end_sub 
+
+// копия таблицы для всех магазинов
+sub(copyTable)
+WAITMS (350)
+RCLICK(240,1018)
+WAIT (1)
+LCLICK(260,700)
+WAITMS (350) 
+end_sub 
+
+sub(deleteTable)
+WAITMS (350)
+RCLICK(360,1018)
+WAIT (1)
+LCLICK(360,670)
+WAITMS (550)
+LCLICK(1182,597)
+WAITMS (350) 
+end_sub
+
+
+// Получить координаты в Ексель таблице для каждого поля
+sub(getCoord, $str)
+  strseparate($str, ",", $cordArr)
+  WAITMS(100)
+  DBLCLICK($cordArr[0],$cordArr[1])
+  UNDEFINE ($cordArr)
+  WAITMS(100)
+end_sub
+
+//Удалить поле
+sub(dellFirstRow)
+RCLICK(23,233) //Координаты первого поля
+WAITMS (200)
+LCLICK(138,468)  
+end_sub
+
+// Вызов поиска
+sub(find)
+WAITMS (150)
+KEYDOWN (#CTRL)
+WAITMS (150)
+KEYDOWN (#F)
+WAITMS (50)
+KEYUP (#F)
+KEYUP (#CTRL) 
+WAITMS (250)
+DBLLCLICK(1600,90)
+end_sub 
+
+//вкладка ГМБ
+sub(brille)
+WNDBUMP($hwnd1)
+LCLICK(120,15)
+end_sub 
+
+//Вкладка ексель
+sub(exel)
+WNDBUMP($hwnd1)
+LCLICK(353,15)
+end_sub 
+
+//выбор нужного селекта  для категорий
+sub(pushButton, $btnName)
+   FOR($i=0,$i<arrsize($arrCategories))
+      IF($btnName = $arrCategories[$i])
+         FOR($b=0,$b<$i+1)
+            KEYPRESS(#DOWN)
+            WAITMS(500)
+         END_CYC
+         WAITMS(500)
+         KEYPRESS(#ENTER) 
+      END_IF
+   END_CYC
+end_sub
+
+//выбор нужного селекта  для кнопки
+sub(pushButton2, $btnName)
+   FOR($i=0,$i<arrsize($arrButtons))
+      IF($btnName = $arrButtons[$i])
+         FOR($b=0,$b<$i+1)
+            KEYPRESS(#DOWN)
+            WAITMS(500)
+         END_CYC
+         WAITMS(500)
+         KEYPRESS(#ENTER) 
+      END_IF
+   END_CYC
+end_sub
+
+//клик в место с нужным цветом
+sub(color, $scrCordTopX, $scrCordTopY,  $scrCordBottomX, $scrCordBottomY, $serchedColor)
+GETSCREEN // Clickermann помещает в свой графический буфер скриншот вашего экрана getscreen             
+// поиск пикселя
+IF_PIXEL_IN ($scrCordTopX,$scrCordTopY, $scrCordBottomX,$scrCordBottomY, $serchedColor)  
+m_move($_return1,$_return2)
+WAIT(1)
+LCLICK($_return1,$_return2)
+ELSE
+  // Если не верно
+HINTPOPUP("Сообщение", "Ошибка")
+LOGWRITE("Магазин=", $errorStore )
+LOGWRITE("Товар=" , $errorGood  )
+LOGSHOW (1, 100,100)
+WNDBUMP($hwnd2)  
+HALT 
+END_IF
+end_sub
+
+
+//color(310, 158, 1685, 280, $greenColor)
+
+$arrangeOfGoods = inputbox("Количество товаров в таблице", "", 4000)  
+
+//        ****** Начало программы******
+
+FOR($j=0,$j<arrsize($arrUrl))    // добавить во все магазины
+WNDBUMP($hwnd1)
+WAITMS (550)
+//делаем новую таблицу
+exel()
+WAITMS (350)
+copyTable()
+WAITMS (350)    
+brille()
+WAITMS (350)
+
+//ввод урла магазина
+LCLICK(900,50)
+WAITMS (350)
+TOCLIP ($arrUrl[$j])
+paste()
+$errorStore = FROMCLIP()
+WAITMS (350)
+KEYPRESS(#ENTER)
+WAIT (1)
+
+
+
+FOR($k=0,$k<$arrangeOfGoods)  // кол-во товаров в таблице 
+
+//добавить  
+find()
+TOCLIP ($step1)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+color(310, 158, 1685, 280, $orangeColor) 
+WAIT(1)
+
+//выбор фотки кнопка
+find()
+TOCLIP ($step2)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+
+//Загрузка картинки      
+exel()
+WAIT (1)
+getCoord($cord1)
+copy()
+WAITMS (350)      
+brille()
+WAITMS (350)
+color(756, 196, 1147, 490, $orangeColor)
+WAIT(7)    // нужна большая задержка
+
+//выбор фотки      
+LCLICK(454,804)
+WAIT(1)
+paste()
+WAIT(1)
+KEYPRESS(#ENTER)
+WAIT(5)  // нужна большая задержка
+
+// Название товара   
+
+// Выбор названия
+find()
+TOCLIP ($step3)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+color(737, 516, 1161, 604, $orangeColor)
+WAITMS (350)
+
+exel()
+WAIT (1)
+getCoord($cord2)
+copy()
+$errorGood = FROMCLIP()
+WAITMS (350)      
+brille()
+WAITMS (350)
+paste()
+WAITMS (350)
+
+// Категория
+find()
+TOCLIP ($step4)
+paste()
+KEYPRESS(#ENTER)
+WAIT(1)
+color(737, 630, 1161, 711, $orangeColor)
+WAIT(1)
+
+exel()
+WAIT (1)
+getCoord($cord3)
+copy()
+WAITMS (350)
+$buttonName = FROMCLIP()    
+brille()
+WAITMS (350)
+
+// поиск поля категории  подпрограммой через нажатия клавиши Вниз
+pushButton($buttonName)
+WAIT(1)
+
+// ввод цены
+find()
+TOCLIP ($step5)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+color(737, 785, 1161, 853, $orangeColor)
+WAIT(1)
+
+exel()
+WAIT (1)
+getCoord($cord4)
+copy()
+WAITMS (350)     
+brille()
+WAITMS (350)
+paste()
+WAITMS (350)
+
+// ввод описания
+find()
+TOCLIP ($step6)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+color(737, 894, 1161, 990, $orangeColor)
+WAITMS (350)
+
+exel()
+WAIT (1)
+getCoord($cord5)
+copy()
+WAITMS (350)     
+brille()
+WAITMS (350)
+paste()
+WAITMS (350)
+
+// добавить кнопку
+find()
+TOCLIP ($step7)
+paste()
+KEYPRESS(#ENTER)
+WAIT(1)
+color(737, 840, 1161, 903, $orangeColor)
+WAIT(1)
+
+exel()
+WAIT (1)
+getCoord($cord6)
+copy()
+WAITMS (350)
+$buttonName = FROMCLIP()       
+brille()
+WAITMS (350)
+// выбрать кнопку  через нажатия клавиши Вниз
+pushButton2($buttonName)
+WAIT(1)
+
+// ввод ссылки
+find()
+TOCLIP ($step8)
+paste()
+KEYPRESS(#ENTER)
+WAITMS (350)
+color(737, 912, 1161, 973, $orangeColor)
+WAITMS (350)
+
+exel()
+WAIT (1)
+getCoord($cord7)
+copy()
+WAITMS (350)     
+brille()
+WAITMS (350)
+paste()
+
+//кнопка сохранить
+find()
+TOCLIP ($step9)
+paste()
+KEYPRESS(#ENTER)
+WAIT(1)
+color(1009, 941, 1156, 991, $orangeColor)
+WAIT(1)
+
+//удалить строку в ексель
+exel()
+WAITMS (450)
+dellFirstRow()
+WAITMS (350)
+brille()
+WAITMS (350)
+
+//статистика
+INC($uploadedCounter)
+LOGCLEAR
+LOGWRITE ($uploadedCounter , "arr:"$cordArr)
+
+WAIT(1) // перерыв
+END_CYC
+
+// востанавливаем товары в таблице 
+exel()
+WAITMS (350)
+deleteTable()
+WAITMS (350)
+END_CYC
+HALT 
